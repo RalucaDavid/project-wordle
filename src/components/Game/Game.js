@@ -14,6 +14,10 @@ function Game() {
   const [guesses, setGuesses] = React.useState([]);
 
   const addGuess = (input) => {
+    if (guesses.length >= 6) {
+      return;
+    }
+
     const newGuess = { id: crypto.randomUUID(), value: input };
     const nextGuesses = [...guesses, newGuess];
     setGuesses(nextGuesses);
