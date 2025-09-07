@@ -8,9 +8,7 @@ function GuessList({ guesses, answer }) {
     <div className="guess-results">
       {range(NUM_OF_GUESSES_ALLOWED).map((index) => {
         return (
-          <p key={guesses[index] ? guesses[index].id : index} className="guess">
-            <Guess guess={guesses[index]?.value} answer={answer} />
-          </p>
+          <Guess key={index} guess={guesses[index]?.value} answer={answer} />
         );
       })}
     </div>

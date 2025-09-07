@@ -18,6 +18,7 @@ function GuessInput({ addGuess, isDisabled }) {
         type="text"
         value={input}
         pattern="[A-Z]{5}"
+        title="5 letter word"
         onChange={(event) => setInput(event.target.value)}
         disabled={isDisabled}
       />

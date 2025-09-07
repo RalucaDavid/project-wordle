@@ -4,9 +4,10 @@ import { sample } from "../../utils";
 import { WORDS, LETTERS } from "../../data";
 import GuessInput from "../GuessInput/GuessInput";
 import GuessList from "../GuessList/GuessList";
-import EndGameBanner from "../EndGameBanner/EndGameBanner";
 import Keyboard from "../Keyboard/Keyboard";
 import { checkGuess } from "../../game-helpers";
+import WonBanner from "../WonBanner/WonBanner";
+import LostBanner from "../LostBanner/LostBanner";
 
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
@@ -55,16 +56,12 @@ function Game() {
     <>
       <GuessList guesses={guesses} answer={answer} />
       <GuessInput addGuess={addGuess} isDisabled={isGameOver} />
-      {isGameOver && (
-        <EndGameBanner
-          endType={
-            guesses[guesses.length - 1].value === answer ? "win" : "lose"
-          }
-          answer={answer}
-          guessesNumber={guesses.length}
-          restartGame={restartGame}
-        />
-      )}
+      {isGameOver &&
+        (guesses[guesses.length - 1].value === answer ? (
+          <WonBanner guessesNumber={guesses.length} restartGame={restartGame} />
+        ) : (
+          <LostBanner answer={answer} restartGame={restartGame} />
+        ))}
       <Keyboard letters={letters} />
     </>
   );
